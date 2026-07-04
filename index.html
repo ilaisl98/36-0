@@ -354,6 +354,7 @@ function selectDifficulty(d){ STATE.difficulty=d; STATE.mode=(d==='expert')?'exp
 function selectReplace(t){ STATE.replaceChoice=t; document.querySelectorAll('#teamChips .team-chip').forEach(c=>c.classList.toggle('selected',c.dataset.t===t)); }
 
 const n = v => (typeof v==='number'&&isFinite(v))?v:0;
+const esc = s => s.replace(/'/g,"\\'").replace(/"/g,'&quot;'); // הגנה מפני גרשיים בשמות (בית"ר וכו')
 function playerFits(p, slotCode){ return p.positions.some(x=>SLOT_ELIG[slotCode].includes(x)); }
 function slotLine(i){ return SLOT_GROUP[FORMATIONS[STATE.formation][i][0]]; }
 
@@ -561,7 +562,7 @@ function selectFormation(f){STATE.formation=f;document.querySelectorAll('#format
 function initIntro(){
   document.getElementById('teamChips').innerHTML=
     `<span class="team-chip selected" data-t="__random__" onclick="selectReplace('__random__')">🎲 הגרלה</span>`+
-    Object.keys(SQUAD_DATA).map(t=>`<span class="team-chip" data-t="${t}" onclick="selectReplace('${t.replace(/'/g,"\\'")}')"><span class="dot" style="background:${TEAM_COLORS[t]||'#888'}"></span>${TEAM_SHORT[t]||t}</span>`).join('');
+    Object.keys(SQUAD_DATA).map(t=>`<span class="team-chip" data-t="${esc(t)}" onclick="selectReplace('${esc(t)}')"><span class="dot" style="background:${TEAM_COLORS[t]||'#888'}"></span>${TEAM_SHORT[t]||t}</span>`).join('');
   document.getElementById('formationCards').innerHTML=Object.keys(FORMATIONS).map((f,i)=>`<div class="mode-card${i===0?' selected':''}" data-f="${f}" onclick="selectFormation('${f}')"><div class="mc-name">${f}</div></div>`).join('');
   try{ const best=JSON.parse(localStorage.getItem('best36')||'null');
     if(best) document.getElementById('bestBadge').innerHTML=`השיא שלך: <b>${best.w} ניצחונות</b> (${best.pts} נק׳) — ${best.tier}`;
@@ -643,7 +644,7 @@ function showTeamPlayers(team){
   document.getElementById('playersTitle').textContent=anyFit?`בחר שחקן (${team})${fBlocked?' • מכסת הזרים מלאה':''}`:'אין שחקן מתאים למשבצות הפנויות — סובב שוב (חינם)';
   document.getElementById('playersGrid').innerHTML=list.map(p=>{
     const fits=canPick(p);
-    return `<div class="player-card${fits?'':' disabled'}" ${fits?`onclick="pickPlayer('${team.replace(/'/g,"\\'")}','${p.name.replace(/'/g,"\\'")}')"`:''}>
+    return `<div class="player-card${fits?'':' disabled'}" ${fits?`onclick="pickPlayer('${esc(team)}','${esc(p.name)}')"`:''}>
       <div class="pc-name">${p.name}${p.foreign?' <span class="foreign-chip">זר</span>':''}</div>
       <div class="pc-pos">${p.positions.join(' / ')}</div>
       ${STATE.mode==='classic'?`<div class="pc-score">${p.overall}</div>`:''}
@@ -668,8 +669,8 @@ function pickPlayer(team,name){
   document.getElementById('playersTitle').textContent=`לאן לשבץ את ${p.name}?`;
   document.getElementById('playersGrid').innerHTML=
     `<div class="slot-choice-title" style="grid-column:1/-1">בחר עמדה:</div>`+
-    opts.map(i=>`<button class="slot-choice-btn" onclick="assignPlayer('${team.replace(/'/g,"\\'")}','${name.replace(/'/g,"\\'")}',${i})">${slots[i][1]} (${slots[i][0]})</button>`).join('')+
-    `<button class="slot-choice-btn" style="background:transparent;border:1px solid var(--line);color:var(--muted)" onclick="showTeamPlayers('${team.replace(/'/g,"\\'")}')">↩ חזרה</button>`;
+    opts.map(i=>`<button class="slot-choice-btn" onclick="assignPlayer('${esc(team)}','${esc(name)}',${i})">${slots[i][1]} (${slots[i][0]})</button>`).join('')+
+    `<button class="slot-choice-btn" style="background:transparent;border:1px solid var(--line);color:var(--muted)" onclick="showTeamPlayers('${esc(team)}')">↩ חזרה</button>`;
 }
 function assignPlayer(team,name,idx){
   const p=SQUAD_DATA[team].find(x=>x.name===name);
