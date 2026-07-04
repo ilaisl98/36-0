@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>36-0 | משחק הדראפט של ליגת העל</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Karantina:wght@300;400;700&family=Frank+Ruhl+Libre:wght@500;700;900&family=Alef:wght@400;700&family=Heebo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -142,29 +142,60 @@ select:focus{outline:none;border-color:var(--gold)}
 .squad-score{color:var(--gold);font-weight:700}
 .results-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
 
+
+/* ---------- מסך סיום = שער עיתון (היברידי) ---------- */
+#screen-results{background:#efe9dc;background-image:repeating-linear-gradient(0deg,#00000005 0 1px,transparent 1px 3px);color:#131110}
+#screen-results .results-brand{font-family:'Frank Ruhl Libre';font-weight:900;font-size:34px;color:#131110;border-bottom:4px double #131110;padding-bottom:10px;margin-bottom:14px}
+#screen-results .results-brand .dash{color:#c8102e;text-shadow:none}
+#screen-results .rb-date{display:flex;justify-content:space-between;font-size:9.5px;font-family:'Alef';font-weight:400;color:#5a554c;letter-spacing:.06em;border-bottom:1px solid #131110;padding-bottom:5px;margin-bottom:8px}
+#screen-results .rb-sub{display:none}
+#screen-results .tier-badge{background:transparent!important;border:none!important;padding:4px 0 0;margin-bottom:6px}
+#screen-results .tier-emoji{font-size:34px;margin-bottom:2px}
+#screen-results .tier-name{font-family:'Frank Ruhl Libre';font-weight:900;font-size:56px;line-height:.95;color:#131110!important}
+#screen-results .tier-desc{color:#5a554c;font-weight:700;font-family:'Alef';font-size:13px}
+#screen-results .near-miss{background:transparent;border:none;border-top:1px solid #131110;border-bottom:1px solid #131110;border-radius:0;color:#131110;font-family:'Alef';font-size:13.5px}
+#screen-results .near-miss b{color:#c8102e}
+#screen-results .stat-box{background:transparent;border:2px solid #131110;border-radius:0}
+#screen-results .stat-box .sb-val{font-family:'Frank Ruhl Libre';font-weight:900;color:#131110}
+#screen-results .stat-box .sb-label{color:#5a554c;letter-spacing:.1em}
+#screen-results .insight-box{background:transparent;border:none;border-top:4px double #131110;border-radius:0;color:#131110;font-family:'Alef'}
+#screen-results .insight-box .ib-title{color:#c8102e}
+#screen-results .moments-box{background:#fffdf5;border:1px solid #131110;border-radius:0;color:#131110;font-family:'Alef'}
+#screen-results .moments-box .ib-title{color:#5a554c}
+#screen-results .squad-recap{background:transparent;border:1px solid #131110;border-radius:0}
+#screen-results .squad-row{border-bottom:1px solid #13111022;color:#131110}
+#screen-results .squad-pos-badge{background:#131110;color:#efe9dc;border-radius:0}
+#screen-results .squad-season{color:#5a554c}
+#screen-results .squad-score{color:#c8102e;font-family:'Frank Ruhl Libre';font-weight:900}
+#screen-results .section-title{color:#131110;border-bottom:1px solid #131110;font-family:'Frank Ruhl Libre';font-weight:700}
+#screen-results .btn-primary{background:#131110;color:#efe9dc;box-shadow:3px 4px 0 #13111066;border-radius:0;font-family:'Frank Ruhl Libre';font-weight:900}
+#screen-results .btn-secondary{background:transparent;color:#131110;border:2px solid #131110;border-radius:0;font-family:'Frank Ruhl Libre';font-weight:700}
+#screen-results .btn-whatsapp{border-radius:0;box-shadow:3px 4px 0 #13111066;font-family:'Frank Ruhl Libre';font-weight:900}
 /* ---------- share card (וואטסאפ) ---------- */
 .results-brand{font-family:'Karantina';font-weight:700;font-size:44px;line-height:1;margin-bottom:10px}
 .results-brand .dash{color:var(--gold)}
 .results-brand .rb-sub{font-family:'Heebo';font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.08em;display:block;margin-top:2px}
-#shareCard{position:absolute;left:-9999px;top:0;width:420px;direction:rtl;font-family:'Heebo',sans-serif;color:var(--white);
-  background:#0a1228;background-image:radial-gradient(500px 260px at 85% -5%,rgba(46,204,113,.1),transparent 60%),radial-gradient(400px 240px at 10% 25%,rgba(245,197,66,.09),transparent 60%);
-  border:1px solid rgba(245,197,66,.3);border-radius:0;padding:26px 24px;text-align:center}
-#shareCard .sc-logo{font-family:'Karantina';font-weight:700;font-size:54px;line-height:.9}
-#shareCard .sc-logo .dash{color:var(--gold)}
-#shareCard .sc-league{font-size:11px;color:var(--muted);letter-spacing:.1em;margin-bottom:14px}
-#shareCard .sc-verdict{font-family:'Karantina';font-weight:700;font-size:46px;line-height:1;margin:4px 0 2px}
-#shareCard .sc-sub{font-size:13px;color:var(--muted);margin-bottom:14px;line-height:1.5}
-#shareCard .sc-stats{display:flex;justify-content:center;gap:8px;margin-bottom:14px}
-#shareCard .sc-bs{background:rgba(255,255,255,.04);border:1px solid rgba(245,197,66,.18);border-radius:12px;padding:8px 0;flex:1}
-#shareCard .sc-bs .n{font-family:'Karantina';font-size:30px;font-weight:700;color:var(--gold);line-height:1}
-#shareCard .sc-bs .l{font-size:9.5px;color:var(--muted)}
-#shareCard .sc-squad{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;text-align:right;font-size:11.5px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:10px 12px;margin-bottom:12px}
+#shareCard{position:absolute;left:-9999px;top:0;width:420px;direction:rtl;font-family:'Alef',sans-serif;color:#131110;
+  background:#efe9dc;background-image:repeating-linear-gradient(0deg,#00000005 0 1px,transparent 1px 3px);
+  border:3px solid #131110;padding:20px 22px;text-align:center}
+#shareCard .sc-date{display:flex;justify-content:space-between;font-size:9px;color:#5a554c;letter-spacing:.06em;border-bottom:1px solid #131110;padding-bottom:4px;margin-bottom:7px}
+#shareCard .sc-logo{font-family:'Frank Ruhl Libre';font-weight:900;font-size:38px;line-height:1;border-bottom:4px double #131110;padding-bottom:10px}
+#shareCard .sc-logo .dash{color:#c8102e}
+#shareCard .sc-league{display:inline-block;background:#c8102e;color:#fff;font-size:10px;font-weight:700;letter-spacing:.3em;padding:3px 14px;margin:12px 0 2px;transform:rotate(-1.5deg)}
+#shareCard .sc-verdict{font-family:'Frank Ruhl Libre';font-weight:900;font-size:46px;line-height:.95;margin:8px 0 4px;color:#131110}
+#shareCard .sc-sub{font-size:12px;font-weight:700;color:#131110;margin-bottom:12px}
+#shareCard .sc-stats{display:flex;border:2px solid #131110;margin-bottom:12px}
+#shareCard .sc-bs{flex:1;padding:8px 0;border-left:1px solid #131110}
+#shareCard .sc-bs:last-child{border-left:none}
+#shareCard .sc-bs .n{font-family:'Frank Ruhl Libre';font-weight:900;font-size:26px;line-height:1;color:#131110}
+#shareCard .sc-bs .l{font-size:8.5px;color:#5a554c;letter-spacing:.08em}
+#shareCard .sc-squad{display:grid;grid-template-columns:1fr 1fr;gap:3px 12px;text-align:right;font-size:11px;border:1px solid #131110;background:#fffdf5;padding:10px 12px;margin-bottom:10px}
 #shareCard .sc-squad .sp{display:flex;gap:6px;align-items:baseline;overflow:hidden;white-space:nowrap}
-#shareCard .sc-squad .sp b{overflow:hidden;text-overflow:ellipsis}
-#shareCard .sc-squad .sp .g{color:var(--gold);font-size:10px;margin-right:auto}
-#shareCard .sc-awards{font-size:12px;color:var(--white);margin-bottom:12px;line-height:1.7}
-#shareCard .sc-awards b{color:var(--gold)}
-#shareCard .sc-foot{font-size:10px;color:var(--muted);border-top:1px solid rgba(245,197,66,.18);padding-top:10px;line-height:1.6}
+#shareCard .sc-squad .sp b{overflow:hidden;text-overflow:ellipsis;font-family:'Alef'}
+#shareCard .sc-squad .sp .g{color:#c8102e;font-size:10px;margin-right:auto;font-weight:700}
+#shareCard .sc-awards{font-size:11.5px;color:#131110;margin-bottom:10px;line-height:1.8;border-top:1px solid #13111055;padding-top:8px}
+#shareCard .sc-awards b{color:#c8102e}
+#shareCard .sc-foot{font-size:9.5px;color:#5a554c;border-top:4px double #131110;padding-top:8px;line-height:1.6}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--night-2)}
 ::-webkit-scrollbar-thumb{background:#26355e;border-radius:3px}
@@ -254,7 +285,7 @@ select:focus{outline:none;border-color:var(--gold)}
 <div id="screen-results" class="screen">
   <canvas id="confettiCanvas" style="display:none"></canvas>
   <div class="results-inner">
-    <div class="results-brand">36<span class="dash">–</span>0<span class="rb-sub">משחק הדראפט של ליגת העל · 25/26</span></div>
+    <div class="results-brand"><div class="rb-date"><span>גיליון העונה שלך</span><span>ליגת העל 25/26</span><span>מחיר: כבוד</span></div>חדשות 36<span class="dash">–</span>0</div>
     <div class="tier-badge" id="tierBadge">
       <div class="tier-emoji" id="tierEmoji"></div>
       <div class="tier-name" id="tierName"></div>
@@ -702,7 +733,7 @@ function showResults(r){
   document.getElementById('tierName').textContent=tier.name;
   document.getElementById('tierDesc').textContent=tier.desc;
   const tb=document.getElementById('tierBadge');
-  tb.style.background=tier.color+'22';tb.style.border='2px solid '+tier.color;tb.style.color=tier.color;
+  tb.style.background='transparent';tb.style.border='none';tb.style.color='inherit'; // עיתון: הכותרת בדיו
   const fromPerfect=r.totalGames-s.w;
   let nm;
   if(s.w===r.totalGames&&r.totalGames>=36) nm='<b>36-0.</b> אין מה להוסיף. צלם ותשלח.';
@@ -746,9 +777,10 @@ function buildShareCard(r,tier,nmText){
   const ta=Object.entries(r.playerAssists).sort((a,b)=>b[1]-a[1])[0];
   const squad=STATE.squad11.map((p,i)=>`<div class="sp"><span style="color:var(--muted);font-size:10px">${slots[i][1]}</span><b>${p.name}</b><span class="g">${r.playerGoals[p.name]?r.playerGoals[p.name]+'⚽':''}</span></div>`).join('');
   document.getElementById('shareCard').innerHTML=`
-    <div class="sc-logo">36<span class="dash">–</span>0</div>
-    <div class="sc-league">משחק הדראפט של ליגת העל · 25/26</div>
-    <div class="sc-verdict" style="color:${tier.color}">${tier.emoji} ${tier.name}</div>
+    <div class="sc-date"><span>גיליון העונה שלך</span><span>ליגת העל 25/26</span><span>מחיר: כבוד</span></div>
+    <div class="sc-logo">חדשות 36<span class="dash">–</span>0</div>
+    <div class="sc-league">מהדורה מיוחדת</div>
+    <div class="sc-verdict">${tier.emoji} ${tier.name}</div>
     <div class="sc-sub">${nmText.replace(/<[^>]+>/g,'')}</div>
     <div class="sc-stats">
       <div class="sc-bs"><div class="n">${s.w}</div><div class="l">ניצחונות</div></div>
